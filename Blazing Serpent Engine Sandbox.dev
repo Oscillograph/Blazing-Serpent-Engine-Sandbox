@@ -1,0 +1,241 @@
+[Project]
+filename = Blazing Serpent Engine Sandbox.dev
+name = Blazing Serpent Engine Sandbox
+UnitCount = 2
+Type = 1
+Ver = 3
+Includes = %APP_PATH%/projects/Blazing Serpent Engine;%APP_PATH%/projects/Blazing Serpent Engine/BSE/vendor;%APP_PATH%/projects/Blazing Serpent Engine/BSE;%APP_PATH%/projects/Blazing Serpent Engine/BSE/vendor/imgui;%APP_PATH%/projects/Blazing Serpent Engine/BSE/vendor/imgui/backends
+Libs = %APP_PATH%/projects/Blazing Serpent Engine Sandbox
+Bins = 
+ResourceIncludes = 
+MakeIncludes = 
+PrivateResource = Blazing_Serpent_Engine_Sandbox_private.rc
+Compiler = 
+CppCompiler = -D BSE_PLATFORM_WINDOWS -D BSE_DLL -D BSE_ENABLE_ASSERTS -D SPDLOG_COMPILED_LIB
+Linker = libBlazing_Serpent_Engine.a_@@_libspdlog.a_@@_libDear_ImGui.a_@@_libglfw3dll.a_@@_libGlad.a
+ResourceCommand = 
+IsCpp = 1
+Icon = app.ico
+ExeOutput = 
+ObjectOutput = 
+LogOutput = 
+LogOutputEnabled = 0
+OverrideOutput = 0
+OverrideOutputName = 
+HostApplication = 
+UseCustomMakefile = 0
+CustomMakefile = 
+UsePrecompiledHeader = 0
+PrecompiledHeader = 
+CommandLine = 
+Folders = 
+IncludeVersionInfo = 1
+SupportXPThemes = 0
+CompilerSet = 4
+StaticLink = 0
+AddCharset = 1
+ExecEncoding = UTF-8
+Encoding = UTF-8
+ModelType = 0
+ClassBrowserType = 0
+AllowParallelBuilding = false
+ParellelBuildingJobs = 4
+UseUTF8 = 1
+
+
+[Unit1]
+FileName = .gitignore
+CompileCpp = 1
+Folder = Others
+Compile = 0
+Link = 0
+Priority = 1000
+OverrideBuildCmd = 0
+BuildCmd = 
+FileEncoding = PROJECT
+RealEncoding = ASCII
+
+
+[VersionInfo]
+Major = 1
+Minor = 0
+Release = 0
+Build = 0
+LanguageID = 1033
+CharsetID = 1252
+CompanyName = 
+FileVersion = 0.1
+FileDescription = Developed using the Red Panda C++ IDE
+InternalName = 
+LegalCopyright = 
+LegalTrademarks = 
+OriginalFilename = Blazing Serpent Engine Sandbox.exe
+ProductName = Blazing Serpent Engine Sandbox
+ProductVersion = 0.1.1.1
+AutoIncBuildNr = 0
+SyncProduct = 1
+
+
+[Unit2]
+FileName = main.cpp
+CompileCpp = 1
+Folder = Sources
+Compile = 1
+Link = 1
+Priority = 1000
+OverrideBuildCmd = 0
+BuildCmd = 
+FileEncoding = PROJECT
+RealEncoding = UTF-8
+
+
+[Unit3]
+FileName = ../Blazing Serpent Engine/BSE/vendor/imgui/imgui_internal.h
+CompileCpp = 0
+Folder = Headers
+Compile = 0
+Link = 0
+Priority = 1000
+OverrideBuildCmd = 0
+BuildCmd = 
+FileEncoding = PROJECT
+RealEncoding = ASCII
+
+
+[Unit4]
+FileName = ../Blazing Serpent Engine/BSE/vendor/imgui/imgui_draw.cpp
+CompileCpp = 1
+Folder = Sources
+Compile = 1
+Link = 1
+Priority = 1000
+OverrideBuildCmd = 0
+BuildCmd = 
+FileEncoding = PROJECT
+RealEncoding = ASCII
+
+
+[Unit5]
+FileName = ../Blazing Serpent Engine/BSE/vendor/imgui/imgui.h
+CompileCpp = 0
+Folder = Headers
+Compile = 0
+Link = 0
+Priority = 1000
+OverrideBuildCmd = 0
+BuildCmd = 
+FileEncoding = PROJECT
+RealEncoding = UTF-8
+
+
+[Unit6]
+FileName = ../Blazing Serpent Engine/BSE/vendor/imgui/imgui_internal.h
+CompileCpp = 0
+Folder = Headers
+Compile = 0
+Link = 0
+Priority = 1000
+OverrideBuildCmd = 0
+BuildCmd = 
+FileEncoding = PROJECT
+RealEncoding = ASCII
+
+
+[Unit7]
+FileName = ../Blazing Serpent Engine/BSE/vendor/imgui/imgui_tables.cpp
+CompileCpp = 1
+Folder = Sources
+Compile = 1
+Link = 1
+Priority = 1000
+OverrideBuildCmd = 0
+BuildCmd = 
+FileEncoding = PROJECT
+RealEncoding = ASCII
+
+
+[Unit8]
+FileName = ../Blazing Serpent Engine/BSE/vendor/imgui/imgui_demo.cpp
+CompileCpp = 1
+Folder = Sources
+Compile = 1
+Link = 1
+Priority = 1000
+OverrideBuildCmd = 0
+BuildCmd = 
+FileEncoding = PROJECT
+RealEncoding = ASCII
+
+
+[Unit9]
+FileName = ../Blazing Serpent Engine/BSE/vendor/imgui/imgui_demo.cpp
+CompileCpp = 1
+Folder = Sources
+Compile = 1
+Link = 1
+Priority = 1000
+OverrideBuildCmd = 0
+BuildCmd = 
+FileEncoding = PROJECT
+RealEncoding = ASCII
+
+
+[Unit10]
+FileName = ../Blazing Serpent Engine/BSE/vendor/imgui/imgui_demo.cpp
+CompileCpp = 1
+Folder = Sources
+Compile = 1
+Link = 1
+Priority = 1000
+OverrideBuildCmd = 0
+BuildCmd = 
+FileEncoding = PROJECT
+RealEncoding = ASCII
+
+
+[Unit11]
+FileName = ../Blazing Serpent Engine/BSE/vendor/imgui/imgui_demo.cpp
+CompileCpp = 1
+Folder = Sources
+Compile = 1
+Link = 1
+Priority = 1000
+OverrideBuildCmd = 0
+BuildCmd = 
+FileEncoding = PROJECT
+RealEncoding = ASCII
+
+
+[Unit12]
+FileName = ../Blazing Serpent Engine/BSE/vendor/imgui/imgui_demo.cpp
+CompileCpp = 1
+Folder = Sources
+Compile = 1
+Link = 1
+Priority = 1000
+OverrideBuildCmd = 0
+BuildCmd = 
+FileEncoding = PROJECT
+RealEncoding = ASCII
+
+
+[CompilerSettings]
+c_cmd_opt_std = c17
+cc_cmd_opt_abort_on_error = 
+cc_cmd_opt_check_iso_conformance = 
+cc_cmd_opt_debug_info = 
+cc_cmd_opt_inhibit_all_warning = 
+cc_cmd_opt_instruction = 
+cc_cmd_opt_optimize = 
+cc_cmd_opt_pointer_size = 
+cc_cmd_opt_profile_info = 
+cc_cmd_opt_stack_protector = 
+cc_cmd_opt_std = c++17
+cc_cmd_opt_syntax_only = 
+cc_cmd_opt_use_pipe = 
+cc_cmd_opt_warning_all = 
+cc_cmd_opt_warning_as_error = 
+cc_cmd_opt_warning_extra = 
+link_cmd_opt_no_console = 
+link_cmd_opt_no_link_stdlib = 
+link_cmd_opt_strip_exe = 
