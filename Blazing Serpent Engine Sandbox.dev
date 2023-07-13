@@ -1,7 +1,7 @@
 [Project]
 filename = Blazing Serpent Engine Sandbox.dev
 name = Blazing Serpent Engine Sandbox
-UnitCount = 3
+UnitCount = 4
 Type = 1
 Ver = 3
 Includes = %APP_PATH%/projects/Blazing Serpent Engine;%APP_PATH%/projects/Blazing Serpent Engine/BSE/vendor;%APP_PATH%/projects/Blazing Serpent Engine/BSE;%APP_PATH%/projects/Blazing Serpent Engine/BSE/vendor/imgui;%APP_PATH%/projects/Blazing Serpent Engine/BSE/vendor/imgui/backends
@@ -99,20 +99,20 @@ Priority = 1000
 OverrideBuildCmd = 0
 BuildCmd = 
 FileEncoding = PROJECT
-RealEncoding = 
+RealEncoding = UTF-8
 
 
 [Unit4]
-FileName = ../Blazing Serpent Engine/BSE/vendor/imgui/imgui_draw.cpp
-CompileCpp = 1
-Folder = Sources
-Compile = 1
-Link = 1
+FileName = data.h
+CompileCpp = 0
+Folder = Headers
+Compile = 0
+Link = 0
 Priority = 1000
 OverrideBuildCmd = 0
 BuildCmd = 
 FileEncoding = PROJECT
-RealEncoding = ASCII
+RealEncoding = UTF-8
 
 
 [Unit5]

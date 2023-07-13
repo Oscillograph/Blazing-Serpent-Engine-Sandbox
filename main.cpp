@@ -9,6 +9,7 @@ public:
 	{};
 	
 	void OnUpdate() override {
+		// Game::DrawThings();
 	}
 	
 	void OnEvent(BSE::Event& event) override {
@@ -18,7 +19,14 @@ public:
 
 class SandboxGuiLayer : public BSE::ImGuiLayer {
 	void OnImGuiRender() {
-		FixImGuiContext(m_ImGuiContext);
+		//FixImGuiContext(m_ImGuiContext);
+		if (m_ImGuiContext != nullptr){									
+			if (m_ImGuiContext != ImGui::GetCurrentContext()){ 			
+				BSE_TRACE("SandboxGui: Current Context is different!"); 
+				ImGui::SetCurrentContext(m_ImGuiContext);				
+				BSE_TRACE("SandboxGui: Current Context is set again!");
+			}
+		}
 			
 		static char buf[256] = u8"Фыва";
 		
