@@ -1,21 +1,9 @@
 #include <BSE_Client.h>
 
 #include "hacks.h"
+//#include "data.h"
 
-class ExampleLayer : public BSE::Layer {
-public:
-	ExampleLayer()
-		: BSE::Layer("Example")
-	{};
-	
-	void OnUpdate() override {
-		// Game::DrawThings();
-	}
-	
-	void OnEvent(BSE::Event& event) override {
-	}
-};
-
+#include "ExampleLayer.h"
 
 class SandboxGuiLayer : public BSE::ImGuiLayer {
 	void OnImGuiRender() {
@@ -57,6 +45,7 @@ public:
 	}
 	
 	~Sandbox(){
+		BSE_INFO("Exit Sandbox");
 	}
 };
 
