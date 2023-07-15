@@ -6,7 +6,7 @@
 #include "ExampleLayer.h"
 
 class SandboxGuiLayer : public BSE::ImGuiLayer {
-	void OnImGuiRender() {
+	void OnImGuiRender(float time) {
 		//FixImGuiContext(m_ImGuiContext);
 		if (m_ImGuiContext != nullptr){									
 			if (m_ImGuiContext != ImGui::GetCurrentContext()){ 			
@@ -42,11 +42,17 @@ public:
 		PushOverlay(GetImGuiLayer());
 		
 		m_ImGuiLayerEnabled = false;
+		m_WinTitle = "BSE Sandbox";
+		m_Window->SetTitle(m_WinTitle);
+		//m_Window->SetVSync(false);
+		m_Window->SetVSync(true);
 	}
 	
 	~Sandbox(){
 		BSE_INFO("Exit Sandbox");
 	}
+	
+	std::string m_WinTitle;
 };
 
 BSE::Application* BSE::CreateApplication() {
