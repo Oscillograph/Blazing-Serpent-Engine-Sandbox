@@ -44,7 +44,7 @@ public:
 		m_ImGuiLayerEnabled = false;
 		m_WinTitle = "BSE Sandbox";
 		m_Window->SetTitle(m_WinTitle);
-		//m_Window->SetVSync(false);
+		// m_Window->SetVSync(false);
 		m_Window->SetVSync(true);
 	}
 	
