@@ -23,6 +23,7 @@ class SandboxGuiLayer : public BSE::ImGuiLayer {
 		
 		ImGui::Begin(u8"Начало");
 		ImGui::Text(u8"Превед, мир!!!!! %d", 111);
+		// ImGui::ColorPicker4("Color that Square", glm::value_ptr(m_SquareColor))
 		ImGui::Button(u8"Сохранить");
 		// Important: inputs with the same label are considered by ImGui as kind of the same object
 		ImGui::InputText(u8"Строка", buf, IM_ARRAYSIZE(buf));
