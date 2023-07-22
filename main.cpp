@@ -7,6 +7,8 @@
 
 class SandboxGuiLayer : public BSE::ImGuiLayer {
 	void OnImGuiRender(float time) {
+		// TODO: find out what causes leak ~4 bytes per a couple of seconds
+		
 		//FixImGuiContext(m_ImGuiContext);
 		if (m_ImGuiContext != nullptr){									
 			if (m_ImGuiContext != ImGui::GetCurrentContext()){ 			
