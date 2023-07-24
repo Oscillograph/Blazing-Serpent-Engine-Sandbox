@@ -1,7 +1,7 @@
 [Project]
 filename = Blazing Serpent Engine Sandbox.dev
 name = Blazing Serpent Engine Sandbox
-UnitCount = 5
+UnitCount = 6
 Type = 1
 Ver = 3
 Includes = %APP_PATH%/projects/Blazing Serpent Engine;%APP_PATH%/projects/Blazing Serpent Engine/BSE/vendor;%APP_PATH%/projects/Blazing Serpent Engine/BSE;%APP_PATH%/projects/Blazing Serpent Engine/BSE/vendor/imgui;%APP_PATH%/projects/Blazing Serpent Engine/BSE/vendor/imgui/backends
@@ -44,11 +44,11 @@ UseUTF8 = 1
 
 
 [Unit1]
-FileName = data.h
-CompileCpp = 0
-Folder = Headers
-Compile = 0
-Link = 0
+FileName = main.cpp
+CompileCpp = 1
+Folder = Sources
+Compile = 1
+Link = 1
 Priority = 1000
 OverrideBuildCmd = 0
 BuildCmd = 
@@ -77,11 +77,11 @@ SyncProduct = 1
 
 
 [Unit2]
-FileName = main.cpp
-CompileCpp = 1
-Folder = Sources
-Compile = 1
-Link = 1
+FileName = hacks.h
+CompileCpp = 0
+Folder = Headers
+Compile = 0
+Link = 0
 Priority = 1000
 OverrideBuildCmd = 0
 BuildCmd = 
@@ -103,7 +103,20 @@ RealEncoding = UTF-8
 
 
 [Unit4]
-FileName = hacks.h
+FileName = Sandbox2D.h
+CompileCpp = 0
+Folder = Headers
+Compile = 0
+Link = 0
+Priority = 1000
+OverrideBuildCmd = 0
+BuildCmd = 
+FileEncoding = PROJECT
+RealEncoding = 
+
+
+[Unit5]
+FileName = data.h
 CompileCpp = 0
 Folder = Headers
 Compile = 0
@@ -115,23 +128,10 @@ FileEncoding = PROJECT
 RealEncoding = UTF-8
 
 
-[Unit5]
-FileName = .gitignore
-CompileCpp = 1
-Folder = Others
-Compile = 0
-Link = 0
-Priority = 1000
-OverrideBuildCmd = 0
-BuildCmd = 
-FileEncoding = PROJECT
-RealEncoding = ASCII
-
-
 [Unit6]
-FileName = ../Blazing Serpent Engine/BSE/vendor/imgui/imgui_internal.h
+FileName = .gitignore
 CompileCpp = 0
-Folder = Headers
+Folder = Others
 Compile = 0
 Link = 0
 Priority = 1000

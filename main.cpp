@@ -3,7 +3,8 @@
 #include "hacks.h"
 //#include "data.h"
 
-#include "ExampleLayer.h"
+// #include "ExampleLayer.h"
+#include "Sandbox2D.h"
 
 class SandboxGuiLayer : public BSE::ImGuiLayer {
 	void OnImGuiRender(float time) {
@@ -39,7 +40,8 @@ class SandboxGuiLayer : public BSE::ImGuiLayer {
 class Sandbox : public BSE::Application {
 public:
 	Sandbox(){
-		PushLayer(new ExampleLayer());
+		// PushLayer(new ExampleLayer());
+		PushLayer(new Sandbox2D());
 		
 		SetImGuiLayer(new SandboxGuiLayer());
 		PushOverlay(GetImGuiLayer());
