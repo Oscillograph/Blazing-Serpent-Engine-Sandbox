@@ -44,16 +44,16 @@ UseUTF8 = 1
 
 
 [Unit1]
-FileName = main.cpp
+FileName = .gitignore
 CompileCpp = 1
-Folder = Sources
-Compile = 1
-Link = 1
+Folder = Others
+Compile = 0
+Link = 0
 Priority = 1000
 OverrideBuildCmd = 0
 BuildCmd = 
 FileEncoding = PROJECT
-RealEncoding = UTF-8
+RealEncoding = ASCII
 
 
 [VersionInfo]
@@ -90,7 +90,7 @@ RealEncoding = UTF-8
 
 
 [Unit3]
-FileName = ExampleLayer.h
+FileName = data.h
 CompileCpp = 0
 Folder = Headers
 Compile = 0
@@ -99,7 +99,7 @@ Priority = 1000
 OverrideBuildCmd = 0
 BuildCmd = 
 FileEncoding = PROJECT
-RealEncoding = ASCII
+RealEncoding = UTF-8
 
 
 [Unit4]
@@ -116,7 +116,20 @@ RealEncoding = ASCII
 
 
 [Unit5]
-FileName = data.h
+FileName = main.cpp
+CompileCpp = 1
+Folder = Sources
+Compile = 1
+Link = 1
+Priority = 1000
+OverrideBuildCmd = 0
+BuildCmd = 
+FileEncoding = PROJECT
+RealEncoding = UTF-8
+
+
+[Unit6]
+FileName = ExampleLayer.h
 CompileCpp = 0
 Folder = Headers
 Compile = 0
@@ -126,19 +139,6 @@ OverrideBuildCmd = 0
 BuildCmd = 
 FileEncoding = PROJECT
 RealEncoding = UTF-8
-
-
-[Unit6]
-FileName = .gitignore
-CompileCpp = 0
-Folder = Others
-Compile = 0
-Link = 0
-Priority = 1000
-OverrideBuildCmd = 0
-BuildCmd = 
-FileEncoding = PROJECT
-RealEncoding = ASCII
 
 
 [Unit7]

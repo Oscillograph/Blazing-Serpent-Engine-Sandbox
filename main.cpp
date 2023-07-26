@@ -33,6 +33,14 @@ class SandboxGuiLayer : public BSE::ImGuiLayer {
 		ImGui::InputText(u8"Строка Другая", textinput, IM_ARRAYSIZE(textinput));
 		ImGui::SliderFloat(u8"Внезапная дробь", &f, 0.0f, 1.0f);
 		ImGui::Text(u8"Дробь равна: %f", f);
+		
+		//static char profileResults[200] = "";
+		auto profileResults = BSE::Profiler::Read();
+		for (auto kv : profileResults){
+				auto name = kv.first;
+				float time = kv.second;
+			ImGui::Text((name + u8"  %.3f ms").c_str(), time);
+		}
 		ImGui::End();
 	}
 };
