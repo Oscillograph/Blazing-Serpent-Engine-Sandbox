@@ -44,16 +44,16 @@ UseUTF8 = 1
 
 
 [Unit1]
-FileName = .gitignore
-CompileCpp = 1
-Folder = Others
+FileName = hacks.h
+CompileCpp = 0
+Folder = Headers
 Compile = 0
 Link = 0
 Priority = 1000
 OverrideBuildCmd = 0
 BuildCmd = 
 FileEncoding = PROJECT
-RealEncoding = ASCII
+RealEncoding = UTF-8
 
 
 [VersionInfo]
@@ -77,11 +77,11 @@ SyncProduct = 1
 
 
 [Unit2]
-FileName = hacks.h
-CompileCpp = 0
-Folder = Headers
-Compile = 0
-Link = 0
+FileName = main.cpp
+CompileCpp = 1
+Folder = Sources
+Compile = 1
+Link = 1
 Priority = 1000
 OverrideBuildCmd = 0
 BuildCmd = 
@@ -103,9 +103,9 @@ RealEncoding = UTF-8
 
 
 [Unit4]
-FileName = Sandbox2D.h
+FileName = .gitignore
 CompileCpp = 0
-Folder = Headers
+Folder = Others
 Compile = 0
 Link = 0
 Priority = 1000
@@ -116,11 +116,11 @@ RealEncoding = ASCII
 
 
 [Unit5]
-FileName = main.cpp
-CompileCpp = 1
-Folder = Sources
-Compile = 1
-Link = 1
+FileName = ExampleLayer.h
+CompileCpp = 0
+Folder = Headers
+Compile = 0
+Link = 0
 Priority = 1000
 OverrideBuildCmd = 0
 BuildCmd = 
@@ -129,7 +129,7 @@ RealEncoding = UTF-8
 
 
 [Unit6]
-FileName = ExampleLayer.h
+FileName = Sandbox2D.h
 CompileCpp = 0
 Folder = Headers
 Compile = 0
