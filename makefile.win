@@ -1,0 +1,35 @@
+# Project: Blazing Serpent Engine Sandbox
+# Makefile created by Red Panda C++ 2.23
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+RES      = Blazing_Serpent_Engine_Sandbox_private.res
+OBJ      = main.o $(RES)
+LINKOBJ  = main.o Blazing_Serpent_Engine_Sandbox_private.res
+CLEANOBJ  =  main.o  Blazing_Serpent_Engine_Sandbox_private.res "Blazing Serpent Engine Sandbox.exe"
+LIBS     =  -L"C:/Embarcadero DevCpp6.3_TDM-GCC9.2/TDM-GCC-64-10.3.0/lib" -L"C:/Embarcadero DevCpp6.3_TDM-GCC9.2/TDM-GCC-64-10.3.0/x86_64-w64-mingw32/lib" -L"C:/Dev-Cpp/SDL/lib" -L"C:/Temp/RedPanda-CPP-2.20/projects/Blazing Serpent Engine Sandbox" -static-libgcc libBlazing_Serpent_Engine.a libspdlog.a libDear_ImGui.a libglfw3dll.a libGlad.a
+INCS     =  -I"C:/Embarcadero DevCpp6.3_TDM-GCC9.2/TDM-GCC-64-10.3.0/include" -I"C:/Embarcadero DevCpp6.3_TDM-GCC9.2/TDM-GCC-64-10.3.0/x86_64-w64-mingw32/include" -I"C:/Embarcadero DevCpp6.3_TDM-GCC9.2/TDM-GCC-64-10.3.0/lib/gcc/x86_64-w64-mingw32/10.3.0/include" -I"C:/Embarcadero DevCpp6.3_TDM-GCC9.2/TDM-GCC-64-10.3.0/lib/gcc/x86_64-w64-mingw32/10.3.0/include-fixed" -I"C:/Dev-Cpp/SDL/include/SDL2"  -I"C:/Temp/RedPanda-CPP-2.20/projects/Blazing Serpent Engine" -I"C:/Temp/RedPanda-CPP-2.20/projects/Blazing Serpent Engine/BSE/vendor" -I"C:/Temp/RedPanda-CPP-2.20/projects/Blazing Serpent Engine/BSE" -I"C:/Temp/RedPanda-CPP-2.20/projects/Blazing Serpent Engine/BSE/vendor/imgui" -I"C:/Temp/RedPanda-CPP-2.20/projects/Blazing Serpent Engine/BSE/vendor/imgui/backends"
+CXXINCS  =  -I"C:/Embarcadero DevCpp6.3_TDM-GCC9.2/TDM-GCC-64-10.3.0/include" -I"C:/Embarcadero DevCpp6.3_TDM-GCC9.2/TDM-GCC-64-10.3.0/x86_64-w64-mingw32/include" -I"C:/Embarcadero DevCpp6.3_TDM-GCC9.2/TDM-GCC-64-10.3.0/lib/gcc/x86_64-w64-mingw32/10.3.0/include" -I"C:/Embarcadero DevCpp6.3_TDM-GCC9.2/TDM-GCC-64-10.3.0/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++" -I"C:/Embarcadero DevCpp6.3_TDM-GCC9.2/TDM-GCC-64-10.3.0/lib/gcc/x86_64-w64-mingw32/10.3.0/include-fixed" -I"C:/Dev-Cpp/SDL/include/SDL2"  -I"C:/Temp/RedPanda-CPP-2.20/projects/Blazing Serpent Engine" -I"C:/Temp/RedPanda-CPP-2.20/projects/Blazing Serpent Engine/BSE/vendor" -I"C:/Temp/RedPanda-CPP-2.20/projects/Blazing Serpent Engine/BSE" -I"C:/Temp/RedPanda-CPP-2.20/projects/Blazing Serpent Engine/BSE/vendor/imgui" -I"C:/Temp/RedPanda-CPP-2.20/projects/Blazing Serpent Engine/BSE/vendor/imgui/backends"
+BIN      = "Blazing Serpent Engine Sandbox.exe"
+CXXFLAGS = $(CXXINCS)  -std=c++17 -D BSE_PLATFORM_WINDOWS -D BSE_DLL -D BSE_ENABLE_ASSERTS -D SPDLOG_COMPILED_LIB
+CFLAGS   = $(INCS)  -std=c17
+RM       = del /q /f
+WINDRESFLAGS  = 
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	-$(RM) $(CLEANOBJ) > NUL 2>&1
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+main.o: main.cpp hacks.h Sandbox2D.h
+	$(CPP) -c main.cpp -o main.o $(CXXFLAGS) 
+
+Blazing_Serpent_Engine_Sandbox_private.res: Blazing_Serpent_Engine_Sandbox_private.rc 
+	$(WINDRES) -i Blazing_Serpent_Engine_Sandbox_private.rc --input-format=rc -o Blazing_Serpent_Engine_Sandbox_private.res -O coff $(WINDRESFLAGS) 
+

@@ -1,0 +1,50 @@
+[
+    {
+        "caretX": 9,
+        "caretY": 1,
+        "filename": "C:/Temp/RedPanda-CPP-2.20/projects/Blazing Serpent Engine Sandbox/data.h",
+        "focused": false,
+        "isOpen": false,
+        "leftChar": 1,
+        "topLine": 1
+    },
+    {
+        "caretX": 32,
+        "caretY": 29,
+        "filename": "C:/Temp/RedPanda-CPP-2.20/projects/Blazing Serpent Engine Sandbox/main.cpp",
+        "focused": false,
+        "isOpen": true,
+        "leftChar": 1,
+        "order": 0,
+        "topLine": 23
+    },
+    {
+        "caretX": 6,
+        "caretY": 10,
+        "filename": "C:/Temp/RedPanda-CPP-2.20/projects/Blazing Serpent Engine Sandbox/hacks.h",
+        "focused": false,
+        "isOpen": false,
+        "leftChar": 1,
+        "topLine": 1
+    },
+    {
+        "caretX": 1,
+        "caretY": 69,
+        "filename": "C:/Temp/RedPanda-CPP-2.20/projects/Blazing Serpent Engine Sandbox/Sandbox2D.h",
+        "focused": true,
+        "isOpen": true,
+        "leftChar": 1,
+        "order": 2,
+        "topLine": 57
+    },
+    {
+        "caretX": 5,
+        "caretY": 191,
+        "filename": "C:/Temp/RedPanda-CPP-2.20/projects/Blazing Serpent Engine Sandbox/ExampleLayer.h",
+        "focused": false,
+        "isOpen": true,
+        "leftChar": 1,
+        "order": 1,
+        "topLine": 167
+    }
+]
