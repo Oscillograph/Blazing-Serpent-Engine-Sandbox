@@ -1,23 +1,18 @@
 #include <BSE_Client.h>
+#include <EntryPoint.h>
 
 #include "hacks.h"
 //#include "data.h"
 
+#include "./src/ParticleSystem.h"
 // #include "ExampleLayer.h"
 #include "Sandbox2D.h"
+
 
 class SandboxGuiLayer : public BSE::ImGuiLayer {
 	void OnImGuiRender(float time) {
 		// TODO: find out what causes leak ~4 bytes per a couple of seconds
-		
-		//FixImGuiContext(m_ImGuiContext);
-		if (m_ImGuiContext != nullptr){									
-			if (m_ImGuiContext != ImGui::GetCurrentContext()){ 			
-				BSE_TRACE("SandboxGui: Current Context is different!"); 
-				ImGui::SetCurrentContext(m_ImGuiContext);				
-				BSE_TRACE("SandboxGui: Current Context is set again!");
-			}
-		}
+		FixImGuiContext(m_ImGuiContext);
 			
 		static char buf[256] = u8"Фыва";
 		

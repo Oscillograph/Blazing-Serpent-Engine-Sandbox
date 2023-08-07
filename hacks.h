@@ -1,6 +1,7 @@
 #ifndef BSESANDBOX_HACKS_H
 #define BSESANDBOX_HACKS_H
 
+
 #define FixImGuiContext(m_Context) \
 	if (m_Context != nullptr){									\
 		if (m_Context != ImGui::GetCurrentContext()){ 			\
