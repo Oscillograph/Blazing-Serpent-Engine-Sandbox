@@ -53,6 +53,8 @@ public:
 		m_SquareTexture->Bind(1);
 		m_TransparentTexture = BSE::Texture2D::Create("./assets/img/broscillograph-transparent-screen.png");
 		m_TransparentTexture->Bind(2);
+		m_SpriteSheet = BSE::Texture2D::Create("./assets/img/kenney.nl_spritesheet_retina.png");
+		m_SpriteSheet->Bind(3);
 		
 		// Particles Init here
 		m_Particle.ColorBegin = { 255 / 255.0f, 255 / 255.0f, 255 / 255.0f, 1.0f };
@@ -108,6 +110,7 @@ public:
 				
 				// int x = 0;
 				// int y = 0;
+				
 				for (int x = 0; x < 100; x++){
 					for (int y = 0; y < 100; y++){
 						BSE::Renderer2D::DrawFilledRect(
@@ -145,6 +148,16 @@ public:
 					{1.0f, 0.5f, 1.0f, 1.0f}
 					);
 				
+				BSE::BSE_Rect sprite = { 128.0f, 384.0f, 128.0f, 128.0f };
+				BSE::Renderer2D::DrawQuadGeneral(
+					{-0.5f, -0.5f, 0.0f }, 
+					{ 0.5f,  0.5f },
+					0.0f,
+					m_SpriteSheet,
+					1.0f,
+					{ 1.0f, 0.5f, 1.0f, 1.0f },
+					&sprite
+					);
 				
 				BSE::Renderer2D::EndScene();
 				
@@ -222,6 +235,7 @@ private:
 	// Temp
 	BSE::Texture2D* m_SquareTexture = nullptr;
 	BSE::Texture2D* m_TransparentTexture = nullptr;
+	BSE::Texture2D* m_SpriteSheet = nullptr;
 	
 	//BSE::VertexArray* m_SquareVA;
 	//BSE::Shader* m_FlatColorShader;
