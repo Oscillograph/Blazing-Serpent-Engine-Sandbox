@@ -20,7 +20,7 @@ void ParticleSystem::OnUpdate(float ts){
 		}
 		
 		particle.LifeRemaining -= ts;
-		particle.Position += particle.Velocity * (float)ts;
+		particle.Position += particle.Velocity * ts;
 		particle.Rotation += 0.01f * ts;
 	}
 }

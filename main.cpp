@@ -1,5 +1,5 @@
 #include <BSE_Client.h>
-#include <EntryPoint.h>
+#include <BSE/EntryPoint.h>
 
 #include "hacks.h"
 //#include "data.h"
