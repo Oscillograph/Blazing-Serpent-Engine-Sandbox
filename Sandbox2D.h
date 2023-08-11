@@ -40,6 +40,7 @@ public:
 	}
 	
 	void OnAttach() override {
+		BSE_PROFILE_FUNCTION();
 		// ------------------------------------------------
 		// OpenGL camera controller
 		unsigned int w = BSE::Application::Get()->GetWindow()->GetWidth();
@@ -49,6 +50,13 @@ public:
 		m_CameraController = new BSE::OrthographicCameraController(uw, 1.5f, true);
 		// ------------------------------------------------
 		
+		BSE::FrameBufferSpecification fbSpec;
+		fbSpec.Width = m_Window->GetWidth();
+		fbSpec.Height = m_Window->GetHeight();
+		m_FrameBuffer = BSE::FrameBuffer::Create(fbSpec);
+		BSE::GameData::m_FrameBuffer = m_FrameBuffer;
+		// ------------------------------------------------
+		
 		m_SquareTexture = BSE::Texture2D::Create("./assets/img/broscillograph.png");
 		m_SquareTexture->Bind(1);
 		m_TransparentTexture = BSE::Texture2D::Create("./assets/img/broscillograph-transparent-screen.png");
@@ -56,15 +64,20 @@ public:
 		m_SpriteSheet = BSE::Texture2D::Create("./assets/img/kenney.nl_spritesheet_retina.png");
 		m_SpriteSheet->Bind(3);
 		
+		BSE::BSE_Rect sprite = { 128.0f, 384.0f, 128.0f, 128.0f };
+		m_HandSprite = new BSE::Texture2DSprite(m_SpriteSheet, sprite);
+		// m_HandSprite->FlipHorizontally();
+		// m_HandSprite->FlipVertically();
+		
 		// Particles Init here
 		m_Particle.ColorBegin = { 255 / 255.0f, 255 / 255.0f, 255 / 255.0f, 1.0f };
 		m_Particle.ColorEnd = { 0 / 255.0f, 255 / 255.0f, 255 / 255.0f, 0.25f };
-		m_Particle.SizeBegin = 0.5f; 
-		m_Particle.SizeVariation = 0.3f;
+		m_Particle.SizeBegin = 0.2f; 
+		m_Particle.SizeVariation = 0.1f;
 		m_Particle.SizeEnd = 0.0f;
-		m_Particle.LifeTime = 1.0f;
+		m_Particle.LifeTime = 2.0f;
 		m_Particle.Velocity = { 0.0f, 0.0f };
-		m_Particle.VelocityVariation = { 0.0f, 0.0f };
+		m_Particle.VelocityVariation = { 2.0f, 2.0f };
 		m_Particle.Position = { 0.0f, 0.0f };
 	}
 	
@@ -101,7 +114,7 @@ public:
 				m_Window->SetTitle(m_Title + " :: FPS = " + buf);
 				// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 				// BSE_TRACE("Window Title changed");
-				
+				m_FrameBuffer->Bind();
 				BSE::Renderer2D::Clear({0.2f, 0.2f, 0.4f, 1});
 				// BSE_TRACE("Clear screen");
 				
@@ -110,7 +123,7 @@ public:
 				
 				// int x = 0;
 				// int y = 0;
-				
+				/*
 				for (int x = 0; x < 100; x++){
 					for (int y = 0; y < 100; y++){
 						BSE::Renderer2D::DrawFilledRect(
@@ -122,6 +135,7 @@ public:
 					}
 					// BSE_INFO("x = {0}, y = {1}", x , y);
 				}
+				*/
 				// BSE_TRACE("Quads drawn");
 				BSE::Renderer2D::DrawTextureRect(
 					{-1.0f, -1.0f}, 
@@ -148,15 +162,13 @@ public:
 					{1.0f, 0.5f, 1.0f, 1.0f}
 					);
 				
-				BSE::BSE_Rect sprite = { 128.0f, 384.0f, 128.0f, 128.0f };
-				BSE::Renderer2D::DrawQuadGeneral(
-					{-0.5f, -0.5f, 0.0f }, 
+				BSE::Renderer2D::DrawSprite(
+					{-0.5f, -0.5f}, 
 					{ 0.5f,  0.5f },
 					0.0f,
-					m_SpriteSheet,
+					m_HandSprite,
 					1.0f,
-					{ 1.0f, 0.5f, 1.0f, 1.0f },
-					&sprite
+					{ 1.0f, 0.5f, 1.0f, 1.0f }
 					);
 				
 				BSE::Renderer2D::EndScene();
@@ -172,7 +184,7 @@ public:
 					x = ((x / width) - 0.5f) * bounds.GetWidth();
 					y = (0.5f - (y / height)) * bounds.GetHeight();
 					m_Particle.Position = { x + pos.x, y + pos.y };
-					for (int i = 0; i < 5; i++)
+					for (int i = 0; i < 10; i++)
 						m_ParticleSystem.Emit(m_Particle);
 				}
 				
@@ -180,6 +192,7 @@ public:
 				m_ParticleSystem.OnRender(m_CameraController->GetCamera());
 				
 				
+				m_FrameBuffer->Unbind();
 				layerTime = 0.0f;
 				frame++;
 				return 1; // 1 - changed something
@@ -236,6 +249,9 @@ private:
 	BSE::Texture2D* m_SquareTexture = nullptr;
 	BSE::Texture2D* m_TransparentTexture = nullptr;
 	BSE::Texture2D* m_SpriteSheet = nullptr;
+	BSE::Texture2DSprite* m_HandSprite = nullptr;
+	
+	BSE::FrameBuffer* m_FrameBuffer;
 	
 	//BSE::VertexArray* m_SquareVA;
 	//BSE::Shader* m_FlatColorShader;
