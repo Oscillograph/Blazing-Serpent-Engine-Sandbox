@@ -53,8 +53,9 @@ public:
 		BSE::FrameBufferSpecification fbSpec;
 		fbSpec.Width = m_Window->GetWidth();
 		fbSpec.Height = m_Window->GetHeight();
-		m_FrameBuffer = BSE::FrameBuffer::Create(fbSpec);
-		BSE::GameData::m_FrameBuffer = m_FrameBuffer;
+		m_FrameBufferA = BSE::FrameBuffer::Create(fbSpec);
+		m_FrameBufferB = BSE::FrameBuffer::Create(fbSpec);
+		BSE::GameData::m_FrameBuffer = m_FrameBufferA;
 		// ------------------------------------------------
 		
 		m_SquareTexture = BSE::Texture2D::Create("./assets/img/broscillograph.png");
@@ -86,7 +87,7 @@ public:
 	}
 	
 	int OnUpdate(float time) override {
-		BSE_PROFILER(u8"Sandbox2D Layer OnUpdate");
+		BSE_PROFILE_FUNCTION();
 		layerTime += time;
 		static int frame = 0;
 		// BSE_TRACE("Layer time counter increased");
@@ -114,7 +115,17 @@ public:
 				m_Window->SetTitle(m_Title + " :: FPS = " + buf);
 				// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 				// BSE_TRACE("Window Title changed");
-				m_FrameBuffer->Bind();
+				
+				// Bind a buffer to work with
+				{
+					BSE_PROFILE_SCOPE(u8"Framebuffer Bind");
+					if (BSE::GameData::m_FrameBuffer == m_FrameBufferA) {
+						m_FrameBufferB->Bind();
+					} else {
+						m_FrameBufferA->Bind();
+					}
+				}
+				
 				BSE::Renderer2D::Clear({0.2f, 0.2f, 0.4f, 1});
 				// BSE_TRACE("Clear screen");
 				
@@ -123,7 +134,7 @@ public:
 				
 				// int x = 0;
 				// int y = 0;
-				/*
+				
 				for (int x = 0; x < 100; x++){
 					for (int y = 0; y < 100; y++){
 						BSE::Renderer2D::DrawFilledRect(
@@ -135,7 +146,7 @@ public:
 					}
 					// BSE_INFO("x = {0}, y = {1}", x , y);
 				}
-				*/
+				
 				// BSE_TRACE("Quads drawn");
 				BSE::Renderer2D::DrawTextureRect(
 					{-1.0f, -1.0f}, 
@@ -192,7 +203,19 @@ public:
 				m_ParticleSystem.OnRender(m_CameraController->GetCamera());
 				
 				
-				m_FrameBuffer->Unbind();
+				// Unbind current buffer
+				{
+					BSE_PROFILE_SCOPE(u8"Framebuffer Unbind");
+					if (BSE::GameData::m_FrameBuffer == m_FrameBufferA) {
+						m_FrameBufferB->Unbind();
+					} else {
+						m_FrameBufferA->Unbind();
+					}
+				}
+				
+				// swap buffers
+				BSE::GameData::m_FrameBuffer = (BSE::GameData::m_FrameBuffer == m_FrameBufferA) ? m_FrameBufferB : m_FrameBufferA;
+				
 				layerTime = 0.0f;
 				frame++;
 				return 1; // 1 - changed something
@@ -251,7 +274,8 @@ private:
 	BSE::Texture2D* m_SpriteSheet = nullptr;
 	BSE::Texture2DSprite* m_HandSprite = nullptr;
 	
-	BSE::FrameBuffer* m_FrameBuffer;
+	BSE::FrameBuffer* m_FrameBufferA;
+	BSE::FrameBuffer* m_FrameBufferB;
 	
 	//BSE::VertexArray* m_SquareVA;
 	//BSE::Shader* m_FlatColorShader;

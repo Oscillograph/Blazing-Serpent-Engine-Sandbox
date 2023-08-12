@@ -10,6 +10,7 @@ ParticleSystem::ParticleSystem() {
 }
 
 void ParticleSystem::OnUpdate(float ts){
+	BSE_PROFILE_FUNCTION();
 	for (auto& particle : m_ParticlePool) {
 		if (!particle.Active)
 			continue;
@@ -26,6 +27,7 @@ void ParticleSystem::OnUpdate(float ts){
 }
 
 void ParticleSystem::OnRender(BSE::OrthographicCamera* camera) {
+	BSE_PROFILE_FUNCTION();
 	BSE::Renderer2D::BeginScene(camera);
 	for (auto& particle : m_ParticlePool) {
 		if (!particle.Active)

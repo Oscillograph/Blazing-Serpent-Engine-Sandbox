@@ -1,1 +1,1 @@
-{"otherData": {},"traceEvents":[]}
+{"otherData": {},"traceEvents":[{"cat":"function","dur":159009,"name":"virtual void Sandbox2D::OnAttach()","ph":"X","pid":0,"tid":2850328247,"ts":1691842042669922}]}
