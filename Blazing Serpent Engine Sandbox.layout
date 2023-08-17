@@ -1,22 +1,43 @@
 [
     {
-        "caretX": 9,
+        "caretX": 6,
         "caretY": 1,
-        "filename": "C:/Temp/RedPanda-CPP-2.20/projects/Blazing Serpent Engine Sandbox/data.h",
+        "filename": "C:/Temp/RedPanda-CPP-2.20/projects/Blazing Serpent Engine Sandbox/ExampleLayer.h",
         "focused": false,
-        "isOpen": false,
+        "isOpen": true,
         "leftChar": 1,
+        "order": 1,
         "topLine": 1
     },
     {
-        "caretX": 23,
-        "caretY": 194,
+        "caretX": 4,
+        "caretY": 31,
+        "filename": "C:/Temp/RedPanda-CPP-2.20/projects/Blazing Serpent Engine Sandbox/main.cpp",
+        "focused": false,
+        "isOpen": true,
+        "leftChar": 1,
+        "order": 0,
+        "topLine": 31
+    },
+    {
+        "caretX": 35,
+        "caretY": 142,
         "filename": "C:/Temp/RedPanda-CPP-2.20/projects/Blazing Serpent Engine Sandbox/Sandbox2D.h",
         "focused": true,
         "isOpen": true,
         "leftChar": 1,
         "order": 2,
-        "topLine": 173
+        "topLine": 117
+    },
+    {
+        "caretX": 28,
+        "caretY": 1,
+        "filename": "C:/Temp/RedPanda-CPP-2.20/projects/Blazing Serpent Engine Sandbox/src/ParticleSystem.cpp",
+        "focused": false,
+        "isOpen": true,
+        "leftChar": 1,
+        "order": 5,
+        "topLine": 1
     },
     {
         "caretX": 75,
@@ -29,23 +50,22 @@
         "topLine": 1
     },
     {
-        "caretX": 56,
-        "caretY": 4,
-        "filename": "C:/Temp/RedPanda-CPP-2.20/projects/Blazing Serpent Engine Sandbox/src/Random.cpp",
+        "caretX": 15,
+        "caretY": 8,
+        "filename": "C:/Temp/RedPanda-CPP-2.20/projects/Blazing Serpent Engine Sandbox/hacks.h",
         "focused": false,
         "isOpen": true,
         "leftChar": 1,
-        "order": 7,
+        "order": 3,
         "topLine": 1
     },
     {
-        "caretX": 6,
+        "caretX": 9,
         "caretY": 1,
-        "filename": "C:/Temp/RedPanda-CPP-2.20/projects/Blazing Serpent Engine Sandbox/ExampleLayer.h",
+        "filename": "C:/Temp/RedPanda-CPP-2.20/projects/Blazing Serpent Engine Sandbox/data.h",
         "focused": false,
-        "isOpen": true,
+        "isOpen": false,
         "leftChar": 1,
-        "order": 1,
         "topLine": 1
     },
     {
@@ -59,33 +79,13 @@
         "topLine": 12
     },
     {
-        "caretX": 44,
-        "caretY": 23,
-        "filename": "C:/Temp/RedPanda-CPP-2.20/projects/Blazing Serpent Engine Sandbox/src/ParticleSystem.cpp",
+        "caretX": 56,
+        "caretY": 4,
+        "filename": "C:/Temp/RedPanda-CPP-2.20/projects/Blazing Serpent Engine Sandbox/src/Random.cpp",
         "focused": false,
         "isOpen": true,
         "leftChar": 1,
-        "order": 5,
-        "topLine": 2
-    },
-    {
-        "caretX": 25,
-        "caretY": 154,
-        "filename": "C:/Temp/RedPanda-CPP-2.20/projects/Blazing Serpent Engine Sandbox/main.cpp",
-        "focused": false,
-        "isOpen": true,
-        "leftChar": 1,
-        "order": 0,
-        "topLine": 134
-    },
-    {
-        "caretX": 38,
-        "caretY": 6,
-        "filename": "C:/Temp/RedPanda-CPP-2.20/projects/Blazing Serpent Engine Sandbox/hacks.h",
-        "focused": false,
-        "isOpen": true,
-        "leftChar": 1,
-        "order": 3,
+        "order": 7,
         "topLine": 1
     }
 ]

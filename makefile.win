@@ -5,9 +5,9 @@ CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
 RES      = Blazing_Serpent_Engine_Sandbox_private.res
-OBJ      = src/ParticleSystem.o main.o src/Random.o $(RES)
-LINKOBJ  = src/ParticleSystem.o main.o src/Random.o Blazing_Serpent_Engine_Sandbox_private.res
-CLEANOBJ  =  src\ParticleSystem.o main.o src\Random.o  Blazing_Serpent_Engine_Sandbox_private.res "Blazing Serpent Engine Sandbox.exe"
+OBJ      = src/Random.o src/ParticleSystem.o main.o $(RES)
+LINKOBJ  = src/Random.o src/ParticleSystem.o main.o Blazing_Serpent_Engine_Sandbox_private.res
+CLEANOBJ  =  src\Random.o src\ParticleSystem.o main.o  Blazing_Serpent_Engine_Sandbox_private.res "Blazing Serpent Engine Sandbox.exe"
 LIBS     =  -L"C:/Embarcadero DevCpp6.3_TDM-GCC9.2/TDM-GCC-64-10.3.0/lib" -L"C:/Embarcadero DevCpp6.3_TDM-GCC9.2/TDM-GCC-64-10.3.0/x86_64-w64-mingw32/lib" -L"C:/Dev-Cpp/SDL/lib" -L"C:/Temp/RedPanda-CPP-2.20/projects/Blazing Serpent Engine Sandbox" -static-libgcc libBlazing_Serpent_Engine.a libspdlog.a libDear_ImGui.a libglfw3dll.a libGlad.a
 INCS     =  -I"C:/Embarcadero DevCpp6.3_TDM-GCC9.2/TDM-GCC-64-10.3.0/include" -I"C:/Embarcadero DevCpp6.3_TDM-GCC9.2/TDM-GCC-64-10.3.0/x86_64-w64-mingw32/include" -I"C:/Embarcadero DevCpp6.3_TDM-GCC9.2/TDM-GCC-64-10.3.0/lib/gcc/x86_64-w64-mingw32/10.3.0/include" -I"C:/Embarcadero DevCpp6.3_TDM-GCC9.2/TDM-GCC-64-10.3.0/lib/gcc/x86_64-w64-mingw32/10.3.0/include-fixed" -I"C:/Dev-Cpp/SDL/include/SDL2"  -I"C:/Temp/RedPanda-CPP-2.20/projects/Blazing Serpent Engine" -I"C:/Temp/RedPanda-CPP-2.20/projects/Blazing Serpent Engine/BSE/vendor" -I"C:/Temp/RedPanda-CPP-2.20/projects/Blazing Serpent Engine/BSE" -I"C:/Temp/RedPanda-CPP-2.20/projects/Blazing Serpent Engine/BSE/vendor/imgui" -I"C:/Temp/RedPanda-CPP-2.20/projects/Blazing Serpent Engine/BSE/vendor/imgui/backends"
 CXXINCS  =  -I"C:/Embarcadero DevCpp6.3_TDM-GCC9.2/TDM-GCC-64-10.3.0/include" -I"C:/Embarcadero DevCpp6.3_TDM-GCC9.2/TDM-GCC-64-10.3.0/x86_64-w64-mingw32/include" -I"C:/Embarcadero DevCpp6.3_TDM-GCC9.2/TDM-GCC-64-10.3.0/lib/gcc/x86_64-w64-mingw32/10.3.0/include" -I"C:/Embarcadero DevCpp6.3_TDM-GCC9.2/TDM-GCC-64-10.3.0/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++" -I"C:/Embarcadero DevCpp6.3_TDM-GCC9.2/TDM-GCC-64-10.3.0/lib/gcc/x86_64-w64-mingw32/10.3.0/include-fixed" -I"C:/Dev-Cpp/SDL/include/SDL2"  -I"C:/Temp/RedPanda-CPP-2.20/projects/Blazing Serpent Engine" -I"C:/Temp/RedPanda-CPP-2.20/projects/Blazing Serpent Engine/BSE/vendor" -I"C:/Temp/RedPanda-CPP-2.20/projects/Blazing Serpent Engine/BSE" -I"C:/Temp/RedPanda-CPP-2.20/projects/Blazing Serpent Engine/BSE/vendor/imgui" -I"C:/Temp/RedPanda-CPP-2.20/projects/Blazing Serpent Engine/BSE/vendor/imgui/backends"
@@ -27,14 +27,14 @@ clean: clean-custom
 $(BIN): $(OBJ)
 	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
 
-src/ParticleSystem.o: src/ParticleSystem.cpp src/ParticleSystem.h src/Random.h
-	$(CPP) -c src/ParticleSystem.cpp -o src/ParticleSystem.o $(CXXFLAGS) 
-
-main.o: main.cpp Sandbox2D.h hacks.h src/ParticleSystem.h
-	$(CPP) -c main.cpp -o main.o $(CXXFLAGS) 
-
 src/Random.o: src/Random.cpp src/Random.h
 	$(CPP) -c src/Random.cpp -o src/Random.o $(CXXFLAGS) 
+
+src/ParticleSystem.o: src/ParticleSystem.cpp src/Random.h src/ParticleSystem.h
+	$(CPP) -c src/ParticleSystem.cpp -o src/ParticleSystem.o $(CXXFLAGS) 
+
+main.o: main.cpp hacks.h Sandbox2D.h src/ParticleSystem.h
+	$(CPP) -c main.cpp -o main.o $(CXXFLAGS) 
 
 Blazing_Serpent_Engine_Sandbox_private.res: Blazing_Serpent_Engine_Sandbox_private.rc 
 	$(WINDRES) -i Blazing_Serpent_Engine_Sandbox_private.rc --input-format=rc -o Blazing_Serpent_Engine_Sandbox_private.res -O coff $(WINDRESFLAGS) 

@@ -53,9 +53,6 @@ public:
 		BSE::FrameBufferSpecification fbSpec;
 		fbSpec.Width = m_Window->GetWidth();
 		fbSpec.Height = m_Window->GetHeight();
-		m_FrameBufferA = BSE::FrameBuffer::Create(fbSpec);
-		m_FrameBufferB = BSE::FrameBuffer::Create(fbSpec);
-		BSE::GameData::m_FrameBuffer = m_FrameBufferA;
 		// ------------------------------------------------
 		
 		m_SquareTexture = BSE::Texture2D::Create("./assets/img/broscillograph.png");
@@ -80,6 +77,20 @@ public:
 		m_Particle.Velocity = { 0.0f, 0.0f };
 		m_Particle.VelocityVariation = { 2.0f, 2.0f };
 		m_Particle.Position = { 0.0f, 0.0f };
+		
+		// Scene init
+		m_ActiveScene = new BSE::Scene();
+		m_Square = m_ActiveScene->CreateEntity("Square");
+		// TODO: find out why SpriteComponent breaks the app
+		m_Square->AddComponent<BSE::SpriteComponent>(glm::vec4({1.0f, 0.3f, 0.2f, 1.0f}));
+		BSE_INFO("Added sprite component");
+		auto name = m_Square->GetComponent<BSE::NameComponent>();
+		BSE_ERROR("Entity <{0}> created", name.Name);
+		//if (square.HasComponent<BSE::NameComponent>()){
+		//	auto name = square.GetComponent<BSE::NameComponent>();
+		//	BSE_ERROR("Entity <{0}> created", name.Name);
+		//}
+		
 	}
 	
 	void OnDetach() override {
@@ -91,6 +102,8 @@ public:
 		layerTime += time;
 		static int frame = 0;
 		// BSE_TRACE("Layer time counter increased");
+		
+		// m_ActiveScene->OnUpdate();
 		
 		// --------------------------------------------------
 		// RENDER
@@ -116,71 +129,12 @@ public:
 				// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 				// BSE_TRACE("Window Title changed");
 				
-				// Bind a buffer to work with
-				{
-					BSE_PROFILE_SCOPE(u8"Framebuffer Bind");
-					if (BSE::GameData::m_FrameBuffer == m_FrameBufferA) {
-						m_FrameBufferB->Bind();
-					} else {
-						m_FrameBufferA->Bind();
-					}
-				}
-				
 				BSE::Renderer2D::Clear({0.2f, 0.2f, 0.4f, 1});
 				// BSE_TRACE("Clear screen");
 				
 				BSE::Renderer2D::BeginScene(m_CameraController->GetCamera());
-				// BSE_TRACE("Begin scene");
 				
-				// int x = 0;
-				// int y = 0;
-				
-				for (int x = 0; x < 100; x++){
-					for (int y = 0; y < 100; y++){
-						BSE::Renderer2D::DrawFilledRect(
-							{-1.0f + x*0.06f, -1.0f + y*0.06f}, 
-							{0.05f, 0.05f},
-							// 0.0f + frame * (180 / fps),
-							{0.2f, 0.7f, 0.3f, 1.0f}
-							);
-					}
-					// BSE_INFO("x = {0}, y = {1}", x , y);
-				}
-				
-				// BSE_TRACE("Quads drawn");
-				BSE::Renderer2D::DrawTextureRect(
-					{-1.0f, -1.0f}, 
-					{1.0f, 1.0f}, 
-					m_SquareTexture,
-					1.0f
-					// {1.0f, 0.5f, 1.0f, 1.0f}
-					);
-				
-				BSE::Renderer2D::DrawTextureRect(
-					{0.50f, 0.50f}, 
-					{1.5f, 1.5f}, 
-					m_TransparentTexture,
-					1.0f,
-					{1.0f, 0.5f, 1.0f, 1.0f}
-					);
-				
-				BSE::Renderer2D::DrawTextureRectRotated(
-					{1.0f, 0.0f}, 
-					{1.0f, 1.0f}, 
-					45.0f,
-					m_TransparentTexture,
-					1.0f,
-					{1.0f, 0.5f, 1.0f, 1.0f}
-					);
-				
-				BSE::Renderer2D::DrawSprite(
-					{-0.5f, -0.5f}, 
-					{ 0.5f,  0.5f },
-					0.0f,
-					m_HandSprite,
-					1.0f,
-					{ 1.0f, 0.5f, 1.0f, 1.0f }
-					);
+				m_ActiveScene->OnUpdate(layerTime);
 				
 				BSE::Renderer2D::EndScene();
 				
@@ -202,20 +156,6 @@ public:
 				m_ParticleSystem.OnUpdate(layerTime);
 				m_ParticleSystem.OnRender(m_CameraController->GetCamera());
 				
-				
-				// Unbind current buffer
-				{
-					BSE_PROFILE_SCOPE(u8"Framebuffer Unbind");
-					if (BSE::GameData::m_FrameBuffer == m_FrameBufferA) {
-						m_FrameBufferB->Unbind();
-					} else {
-						m_FrameBufferA->Unbind();
-					}
-				}
-				
-				// swap buffers
-				BSE::GameData::m_FrameBuffer = (BSE::GameData::m_FrameBuffer == m_FrameBufferA) ? m_FrameBufferB : m_FrameBufferA;
-				
 				layerTime = 0.0f;
 				frame++;
 				return 1; // 1 - changed something
@@ -232,32 +172,7 @@ public:
 	void OnEvent(BSE::Event& event) override {
 		m_CameraController->OnEvent(event);
 	}
-	/*
-	void OnImGuiRender(float time) {
-		// TODO: Fix app crash due to DLL not sharing memory with client app
-	    // Malkaround: make a class for data and build an interface to communicate with layers 
-		BSE_ERROR("Sandbox2D: OnImGuiRender");
-		m_ImGuiLayer = (BSE::ImGuiLayer*)(BSE::Application::Get()->GetImGuiLayer());
-		if (m_ImGuiLayer != nullptr){
-			// TODO: find out what causes leak ~4 bytes per a couple of seconds
-			m_ImGuiLayer->FixImGuiContext();
-			//if (m_ImGuiLayer->GetImGuiContext() != ImGui::GetCurrentContext()){
-			//	BSE_TRACE("Current Context is different!");
-			//	ImGui::SetCurrentContext(ImGui::GetCurrentContext());
-			//	BSE_TRACE("Current Context is set again!");
-			//}
-			BSE_ERROR("Sandbox2D: OnImGuiRender - FixImGuiContext");
-			
-			ImGui::Begin(u8"Начало");
-			ImGui::Text(u8"Превед, мир!!!!! %d", 111);
-			// ImGui::ColorPicker4("Color that Square", glm::value_ptr(m_SquareColor))
-			ImGui::Button(u8"Сохранить");
-			
-			ImGui::End();
-		}
-		m_ImGuiLayer = nullptr;
-	}
-	*/
+	
 	
 private:
 	float layerTime = 0.0f;
@@ -274,9 +189,6 @@ private:
 	BSE::Texture2D* m_SpriteSheet = nullptr;
 	BSE::Texture2DSprite* m_HandSprite = nullptr;
 	
-	BSE::FrameBuffer* m_FrameBufferA;
-	BSE::FrameBuffer* m_FrameBufferB;
-	
 	//BSE::VertexArray* m_SquareVA;
 	//BSE::Shader* m_FlatColorShader;
 	glm::vec4 m_RedColor  = {0.7, 0.4, 0.5, 1.0};
@@ -284,6 +196,9 @@ private:
 	
 	ParticleSystem m_ParticleSystem;
 	ParticleProps m_Particle;
+	
+	BSE::Scene* m_ActiveScene;
+	BSE::Entity* m_Square;
 };
 
 #endif
