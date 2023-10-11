@@ -44,9 +44,9 @@ UseUTF8 = 1
 
 
 [Unit1]
-FileName = ExampleLayer.h
+FileName = src/Random.h
 CompileCpp = 0
-Folder = Headers
+Folder = Headers/src
 Compile = 0
 Link = 0
 Priority = 1000
@@ -77,20 +77,7 @@ SyncProduct = 1
 
 
 [Unit2]
-FileName = main.cpp
-CompileCpp = 1
-Folder = Sources
-Compile = 1
-Link = 1
-Priority = 1000
-OverrideBuildCmd = 0
-BuildCmd = 
-FileEncoding = PROJECT
-RealEncoding = UTF-8
-
-
-[Unit3]
-FileName = Sandbox2D.h
+FileName = ExampleLayer.h
 CompileCpp = 0
 Folder = Headers
 Compile = 0
@@ -99,11 +86,24 @@ Priority = 1000
 OverrideBuildCmd = 0
 BuildCmd = 
 FileEncoding = PROJECT
-RealEncoding = ASCII
+RealEncoding = UTF-8
+
+
+[Unit3]
+FileName = data.h
+CompileCpp = 0
+Folder = Headers
+Compile = 0
+Link = 0
+Priority = 1000
+OverrideBuildCmd = 0
+BuildCmd = 
+FileEncoding = PROJECT
+RealEncoding = UTF-8
 
 
 [Unit4]
-FileName = src/ParticleSystem.cpp
+FileName = src/Random.cpp
 CompileCpp = 1
 Folder = Sources/src
 Compile = 1
@@ -129,19 +129,6 @@ RealEncoding = ASCII
 
 
 [Unit6]
-FileName = src/Random.h
-CompileCpp = 0
-Folder = Headers/src
-Compile = 0
-Link = 0
-Priority = 1000
-OverrideBuildCmd = 0
-BuildCmd = 
-FileEncoding = PROJECT
-RealEncoding = UTF-8
-
-
-[Unit7]
 FileName = hacks.h
 CompileCpp = 0
 Folder = Headers
@@ -154,8 +141,8 @@ FileEncoding = PROJECT
 RealEncoding = UTF-8
 
 
-[Unit8]
-FileName = data.h
+[Unit7]
+FileName = Sandbox2D.h
 CompileCpp = 0
 Folder = Headers
 Compile = 0
@@ -167,7 +154,7 @@ FileEncoding = PROJECT
 RealEncoding = UTF-8
 
 
-[Unit9]
+[Unit8]
 FileName = src/ParticleSystem.h
 CompileCpp = 0
 Folder = Headers/src
@@ -180,10 +167,23 @@ FileEncoding = PROJECT
 RealEncoding = UTF-8
 
 
-[Unit10]
-FileName = src/Random.cpp
+[Unit9]
+FileName = src/ParticleSystem.cpp
 CompileCpp = 1
 Folder = Sources/src
+Compile = 1
+Link = 1
+Priority = 1000
+OverrideBuildCmd = 0
+BuildCmd = 
+FileEncoding = PROJECT
+RealEncoding = UTF-8
+
+
+[Unit10]
+FileName = main.cpp
+CompileCpp = 1
+Folder = Sources
 Compile = 1
 Link = 1
 Priority = 1000

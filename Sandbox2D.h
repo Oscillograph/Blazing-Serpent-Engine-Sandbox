@@ -83,7 +83,8 @@ public:
 		m_Square = m_ActiveScene->CreateEntity("Square");
 		// TODO: find out why SpriteComponent breaks the app
 		m_Square->AddComponent<BSE::SpriteComponent>(glm::vec4({1.0f, 0.3f, 0.2f, 1.0f}));
-		BSE_INFO("Added sprite component");
+		if (m_Square->HasComponent<BSE::SpriteComponent>())
+			BSE_INFO("Added sprite component");
 		auto name = m_Square->GetComponent<BSE::NameComponent>();
 		BSE_ERROR("Entity <{0}> created", name.Name);
 		//if (square.HasComponent<BSE::NameComponent>()){
@@ -129,12 +130,19 @@ public:
 				// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 				// BSE_TRACE("Window Title changed");
 				
-				BSE::Renderer2D::Clear({0.2f, 0.2f, 0.4f, 1});
+				BSE::Renderer2D::Clear({0.2f, 0.0f + frame*layerTime, 0.4f, 1});
 				// BSE_TRACE("Clear screen");
-				
+				// m_CameraController->SetProjectionDefault();
 				BSE::Renderer2D::BeginScene(m_CameraController->GetCamera());
 				
-				m_ActiveScene->OnUpdate(layerTime);
+				// m_ActiveScene->OnUpdate(layerTime);
+				auto group = m_ActiveScene->Registry().view<BSE::TransformComponent, BSE::SpriteComponent>();
+				for (auto entity : group){
+					auto [transform, sprite] = group.get<BSE::TransformComponent, BSE::SpriteComponent>(entity);
+					// Renderer::Submit(sprite, transform);
+					// TODO: remove temporary usage of renderer
+					BSE::Renderer2D::DrawQuadGeneral(transform.Transform, nullptr, 1.0f, sprite.Color);
+				}
 				
 				BSE::Renderer2D::EndScene();
 				
